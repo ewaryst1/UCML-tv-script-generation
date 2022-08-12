@@ -8,6 +8,8 @@ __pycache__/
 
 # not exposed
 data
+workspace_utils
+preprocess.p
 
 # Distribution / packaging
 .Python
