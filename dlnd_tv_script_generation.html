@@ -13453,7 +13453,7 @@ jerry: thats perfect.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -13480,7 +13480,7 @@ jerry: thats perfect.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -13495,24 +13495,6 @@ jerry: thats perfect.
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>No GPU found. Please use a GPU to train your neural network.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13549,7 +13531,7 @@ sequence_length = 4</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="k">import</span> <span class="n">TensorDataset</span><span class="p">,</span> <span class="n">DataLoader</span>
@@ -13645,7 +13627,7 @@ tensor([ 33,  26,  22,  39,  16,  28,  11,  43,  30,  12])</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># test dataloader</span>
@@ -13678,19 +13660,19 @@ tensor([ 33,  26,  22,  39,  16,  28,  11,  43,  30,  12])</code></pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>torch.Size([10, 5])
-tensor([[ 28,  29,  30,  31,  32],
-        [ 26,  27,  28,  29,  30],
-        [ 11,  12,  13,  14,  15],
-        [ 10,  11,  12,  13,  14],
-        [ 36,  37,  38,  39,  40],
+tensor([[  9,  10,  11,  12,  13],
         [ 29,  30,  31,  32,  33],
-        [ 17,  18,  19,  20,  21],
+        [  5,   6,   7,   8,   9],
+        [ 41,  42,  43,  44,  45],
+        [ 19,  20,  21,  22,  23],
+        [ 31,  32,  33,  34,  35],
+        [ 10,  11,  12,  13,  14],
+        [ 43,  44,  45,  46,  47],
         [  7,   8,   9,  10,  11],
-        [ 25,  26,  27,  28,  29],
-        [ 24,  25,  26,  27,  28]])
+        [ 13,  14,  15,  16,  17]])
 
 torch.Size([10])
-tensor([ 33,  31,  16,  15,  41,  34,  22,  12,  30,  29])
+tensor([ 14,  34,  10,  46,  24,  36,  15,  48,  12,  18])
 </pre>
 </div>
 </div>
@@ -13726,7 +13708,7 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
@@ -13771,7 +13753,7 @@ out = output[:, -1]</code></pre>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
         <span class="c1"># get last output and apply remaining layers</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         
@@ -13843,7 +13825,7 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">forward_back_prop</span><span class="p">(</span><span class="n">rnn</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>
@@ -13920,7 +13902,7 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -13988,14 +13970,14 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Data params</span>
 <span class="c1"># Sequence Length</span>
-<span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">55</span>  <span class="c1"># of words in a sequence</span>
+<span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># of words in a sequence</span>
 <span class="c1"># Batch Size</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
 
 <span class="c1"># data loader - do not change</span>
 <span class="n">train_loader</span> <span class="o">=</span> <span class="n">batch_data</span><span class="p">(</span><span class="n">int_text</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
@@ -14013,13 +13995,13 @@ out = output[:, -1]</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>17842</pre>
+<pre>3485</pre>
 </div>
 
 </div>
@@ -14030,14 +14012,14 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Training parameters</span>
 <span class="c1"># Number of Epochs</span>
 <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="c1"># Learning Rate</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0005</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
 
 <span class="c1"># Model parameters</span>
 <span class="c1"># Vocab size</span>
@@ -14047,12 +14029,12 @@ out = output[:, -1]</code></pre>
 <span class="c1"># Embedding Dimension</span>
 <span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="c1"># Hidden Dimension</span>
-<span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="c1"># Number of RNN Layers</span>
-<span class="n">n_layers</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_layers</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="c1"># Show stats for every n number of batches</span>
-<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="mi">1700</span>
+<span class="n">show_every_n_batches</span> <span class="o">=</span> <span class="mi">350</span>
 </pre></div>
 
     </div>
@@ -14073,7 +14055,7 @@ out = output[:, -1]</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14112,195 +14094,185 @@ out = output[:, -1]</code></pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training for 10 epoch(s)...
-Epoch:    1/10    Loss: 5.964652936037849
+Epoch:    1/10    Loss: 5.642058853421893
 
-Epoch:    1/10    Loss: 5.285367723913754
+Epoch:    1/10    Loss: 4.949056381498064
 
-Epoch:    1/10    Loss: 5.121199651044957
+Epoch:    1/10    Loss: 4.727557156426566
 
-Epoch:    1/10    Loss: 5.010469682076398
+Epoch:    1/10    Loss: 4.591093473434448
 
-Epoch:    1/10    Loss: 4.936293950361364
+Epoch:    1/10    Loss: 4.504781925337655
 
-Epoch:    1/10    Loss: 4.893101491367116
+Epoch:    1/10    Loss: 4.429616526194981
 
-Epoch:    1/10    Loss: 4.828422516233781
+Epoch:    1/10    Loss: 4.397096202032906
 
-Epoch:    1/10    Loss: 4.797257636855631
+Epoch:    1/10    Loss: 4.34269754750388
 
-Epoch:    1/10    Loss: 4.761021207500907
+Epoch:    1/10    Loss: 4.323105819565909
 
-Epoch:    1/10    Loss: 4.726550157771391
+Epoch:    2/10    Loss: 4.2398108477480925
 
-Epoch:    2/10    Loss: 4.64117257813683
+Epoch:    2/10    Loss: 4.178784689222064
 
-Epoch:    2/10    Loss: 4.570972967007581
+Epoch:    2/10    Loss: 4.144359412874494
 
-Epoch:    2/10    Loss: 4.570120444438037
+Epoch:    2/10    Loss: 4.154757223129272
 
-Epoch:    2/10    Loss: 4.573814390406889
+Epoch:    2/10    Loss: 4.117401708194188
 
-Epoch:    2/10    Loss: 4.548244465799892
+Epoch:    2/10    Loss: 4.12384890965053
 
-Epoch:    2/10    Loss: 4.520217925099765
+Epoch:    2/10    Loss: 4.108949957575117
 
-Epoch:    2/10    Loss: 4.528588820625754
+Epoch:    2/10    Loss: 4.121668680735997
 
-Epoch:    2/10    Loss: 4.481978808992049
+Epoch:    2/10    Loss: 4.102973568780081
 
-Epoch:    2/10    Loss: 4.45965710107018
+Epoch:    3/10    Loss: 4.03160119684119
 
-Epoch:    2/10    Loss: 4.467964818477631
+Epoch:    3/10    Loss: 3.9594108206885203
 
-Epoch:    3/10    Loss: 4.430856994454761
+Epoch:    3/10    Loss: 3.986963041850499
 
-Epoch:    3/10    Loss: 4.390846466457143
+Epoch:    3/10    Loss: 3.9755004692077636
 
-Epoch:    3/10    Loss: 4.380841576071346
+Epoch:    3/10    Loss: 3.951196467535836
 
-Epoch:    3/10    Loss: 4.358860100858352
+Epoch:    3/10    Loss: 3.9788131053107127
 
-Epoch:    3/10    Loss: 4.3701319416831526
+Epoch:    3/10    Loss: 3.9767754772731236
 
-Epoch:    3/10    Loss: 4.387237293720245
+Epoch:    3/10    Loss: 3.948773293495178
 
-Epoch:    3/10    Loss: 4.374808706956752
+Epoch:    3/10    Loss: 3.9595394802093504
 
-Epoch:    3/10    Loss: 4.362016518957475
+Epoch:    4/10    Loss: 3.896746307088618
 
-Epoch:    3/10    Loss: 4.34543897376341
+Epoch:    4/10    Loss: 3.8677144193649293
 
-Epoch:    3/10    Loss: 4.354546157752766
+Epoch:    4/10    Loss: 3.8511600766863143
 
-Epoch:    4/10    Loss: 4.295001637977862
+Epoch:    4/10    Loss: 3.8517195299693516
 
-Epoch:    4/10    Loss: 4.290329301217023
+Epoch:    4/10    Loss: 3.883068297931126
 
-Epoch:    4/10    Loss: 4.297670331141528
+Epoch:    4/10    Loss: 3.867536950792585
 
-Epoch:    4/10    Loss: 4.271572502080132
+Epoch:    4/10    Loss: 3.8543942410605294
 
-Epoch:    4/10    Loss: 4.281549070021685
+Epoch:    4/10    Loss: 3.8349493626185827
 
-Epoch:    4/10    Loss: 4.293779506402857
+Epoch:    4/10    Loss: 3.8648462860924857
 
-Epoch:    4/10    Loss: 4.264175553041346
+Epoch:    5/10    Loss: 3.8126876929350066
 
-Epoch:    4/10    Loss: 4.2698959691384255
+Epoch:    5/10    Loss: 3.782355349404471
 
-Epoch:    4/10    Loss: 4.258775771505692
+Epoch:    5/10    Loss: 3.7724047899246216
 
-Epoch:    4/10    Loss: 4.266411523257985
+Epoch:    5/10    Loss: 3.7898983097076417
 
-Epoch:    5/10    Loss: 4.2114070516456446
+Epoch:    5/10    Loss: 3.7736590691975187
 
-Epoch:    5/10    Loss: 4.206087228129892
+Epoch:    5/10    Loss: 3.779385014261518
 
-Epoch:    5/10    Loss: 4.210199900795431
+Epoch:    5/10    Loss: 3.795780258859907
 
-Epoch:    5/10    Loss: 4.213651411673602
+Epoch:    5/10    Loss: 3.7843115534101215
 
-Epoch:    5/10    Loss: 4.195157280108508
+Epoch:    5/10    Loss: 3.780392520087106
 
-Epoch:    5/10    Loss: 4.212567800353555
+Epoch:    6/10    Loss: 3.7424730951325937
 
-Epoch:    5/10    Loss: 4.203588923145743
+Epoch:    6/10    Loss: 3.715786305155073
 
-Epoch:    5/10    Loss: 4.195534411037669
+Epoch:    6/10    Loss: 3.71767039843968
 
-Epoch:    5/10    Loss: 4.224214914265801
+Epoch:    6/10    Loss: 3.7009745025634766
 
-Epoch:    6/10    Loss: 4.182322827252475
+Epoch:    6/10    Loss: 3.7152442816325597
 
-Epoch:    6/10    Loss: 4.160261339860804
+Epoch:    6/10    Loss: 3.740130135672433
 
-Epoch:    6/10    Loss: 4.152879889712614
+Epoch:    6/10    Loss: 3.7368821716308593
 
-Epoch:    6/10    Loss: 4.138110999079312
+Epoch:    6/10    Loss: 3.710913975579398
 
-Epoch:    6/10    Loss: 4.143757935271544
+Epoch:    6/10    Loss: 3.7294704825537544
 
-Epoch:    6/10    Loss: 4.16172824901693
+Epoch:    7/10    Loss: 3.685280146306021
 
-Epoch:    6/10    Loss: 4.154806410284603
+Epoch:    7/10    Loss: 3.6391998107092722
 
-Epoch:    6/10    Loss: 4.143309248054729
+Epoch:    7/10    Loss: 3.667965567452567
 
-Epoch:    6/10    Loss: 4.157206145735348
+Epoch:    7/10    Loss: 3.6719681528636388
 
-Epoch:    6/10    Loss: 4.174763874166152
+Epoch:    7/10    Loss: 3.6651357351030622
 
-Epoch:    7/10    Loss: 4.133701447284583
+Epoch:    7/10    Loss: 3.6870768172400337
 
-Epoch:    7/10    Loss: 4.122971638651455
+Epoch:    7/10    Loss: 3.6882983882086617
 
-Epoch:    7/10    Loss: 4.104679513819077
+Epoch:    7/10    Loss: 3.690410016604832
 
-Epoch:    7/10    Loss: 4.117451479575213
+Epoch:    7/10    Loss: 3.675244414465768
 
-Epoch:    7/10    Loss: 4.122536633154925
+Epoch:    8/10    Loss: 3.649580328088058
 
-Epoch:    7/10    Loss: 4.104839551869561
+Epoch:    8/10    Loss: 3.605826469148908
 
-Epoch:    7/10    Loss: 4.095298549708198
+Epoch:    8/10    Loss: 3.6246376848220825
 
-Epoch:    7/10    Loss: 4.102944417140063
+Epoch:    8/10    Loss: 3.6183640684400284
 
-Epoch:    7/10    Loss: 4.116472849284901
+Epoch:    8/10    Loss: 3.6305456835883003
 
-Epoch:    7/10    Loss: 4.128368467022391
+Epoch:    8/10    Loss: 3.6445058938435144
 
-Epoch:    8/10    Loss: 4.092828848755111
+Epoch:    8/10    Loss: 3.6574358408791676
 
-Epoch:    8/10    Loss: 4.0765260052680965
+Epoch:    8/10    Loss: 3.646650517327445
 
-Epoch:    8/10    Loss: 4.070288524066701
+Epoch:    8/10    Loss: 3.652700956889561
 
-Epoch:    8/10    Loss: 4.070814307016485
+Epoch:    9/10    Loss: 3.60224631794712
 
-Epoch:    8/10    Loss: 4.0641899270169874
+Epoch:    9/10    Loss: 3.5756491783687046
 
-Epoch:    8/10    Loss: 4.073115819762735
+Epoch:    9/10    Loss: 3.5879564462389264
 
-Epoch:    8/10    Loss: 4.096990890222437
+Epoch:    9/10    Loss: 3.6080133152008056
 
-Epoch:    8/10    Loss: 4.081259153309991
+Epoch:    9/10    Loss: 3.5964959274019512
 
-Epoch:    8/10    Loss: 4.092803698287291
+Epoch:    9/10    Loss: 3.6044794273376466
 
-Epoch:    8/10    Loss: 4.07476132070317
+Epoch:    9/10    Loss: 3.6163099193573
 
-Epoch:    9/10    Loss: 4.041227542335994
+Epoch:    9/10    Loss: 3.6017751244136265
 
-Epoch:    9/10    Loss: 4.025880495239707
+Epoch:    9/10    Loss: 3.619333027430943
 
-Epoch:    9/10    Loss: 4.057924159414628
+Epoch:   10/10    Loss: 3.5688627930412515
 
-Epoch:    9/10    Loss: 4.055356509685517
+Epoch:   10/10    Loss: 3.545018824168614
 
-Epoch:    9/10    Loss: 4.074736765833462
+Epoch:   10/10    Loss: 3.5452152143205917
 
-Epoch:    9/10    Loss: 4.056495385169983
+Epoch:   10/10    Loss: 3.564890688487462
 
-Epoch:   10/10    Loss: 4.035685373075081
+Epoch:   10/10    Loss: 3.564659570966448
 
-Epoch:   10/10    Loss: 4.018283043047961
+Epoch:   10/10    Loss: 3.588425361088344
 
-Epoch:   10/10    Loss: 4.025123986075906
+Epoch:   10/10    Loss: 3.5598798976625714
 
-Epoch:   10/10    Loss: 4.0248745978579805
+Epoch:   10/10    Loss: 3.6000242614746094
 
-Epoch:   10/10    Loss: 4.019266224187963
-
-Epoch:   10/10    Loss: 4.023407085783341
-
-Epoch:   10/10    Loss: 4.0165547753782835
-
-Epoch:   10/10    Loss: 4.03257412111058
-
-Epoch:   10/10    Loss: 4.010547803009257
-
-Epoch:   10/10    Loss: 4.045588759955238
+Epoch:   10/10    Loss: 3.5831950957434517
 
 </pre>
 </div>
@@ -14325,6 +14297,232 @@ Epoch:   10/10    Loss: 4.045588759955238
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Model Trained and Saved
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">trained_rnn</span> <span class="o">=</span> <span class="n">train_rnn</span><span class="p">(</span><span class="n">trained_rnn</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">show_every_n_batches</span><span class="p">)</span>
+
+<span class="c1"># saving the trained model</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s1">&#39;./save/trained_rnn&#39;</span><span class="p">,</span> <span class="n">trained_rnn</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Trained and Saved&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Training for 2 epoch(s)...
+Epoch:    1/2     Loss: 3.488767885480608
+
+Epoch:    1/2     Loss: 3.5116529989242555
+
+Epoch:    1/2     Loss: 3.512808505467006
+
+Epoch:    1/2     Loss: 3.5157545818601337
+
+Epoch:    1/2     Loss: 3.5430508395603724
+
+Epoch:    1/2     Loss: 3.547085587637765
+
+Epoch:    1/2     Loss: 3.551319943155561
+
+Epoch:    1/2     Loss: 3.557552805628095
+
+Epoch:    1/2     Loss: 3.5689249971934727
+
+Epoch:    2/2     Loss: 3.5292733831015246
+
+Epoch:    2/2     Loss: 3.489300639969962
+
+Epoch:    2/2     Loss: 3.4991705077035085
+
+Epoch:    2/2     Loss: 3.4996482120241437
+
+Epoch:    2/2     Loss: 3.5131328085490634
+
+Epoch:    2/2     Loss: 3.510455592700413
+
+Epoch:    2/2     Loss: 3.5265775176456997
+
+Epoch:    2/2     Loss: 3.547956335885184
+
+Epoch:    2/2     Loss: 3.5240808139528546
+
+Model Trained and Saved
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/lib/python3.6/site-packages/torch/serialization.py:193: UserWarning: Couldn&#39;t retrieve source code for container of type RNN. It won&#39;t be checked for correctness upon loading.
+  &#34;type &#34; + obj.__name__ + &#34;. It won&#39;t be checked &#34;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">trained_rnn</span> <span class="o">=</span> <span class="n">train_rnn</span><span class="p">(</span><span class="n">trained_rnn</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">show_every_n_batches</span><span class="p">)</span>
+
+<span class="c1"># saving the trained model</span>
+<span class="n">helper</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s1">&#39;./save/trained_rnn&#39;</span><span class="p">,</span> <span class="n">trained_rnn</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Trained and Saved&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Training for 5 epoch(s)...
+Epoch:    1/5     Loss: 3.4425818634033205
+
+Epoch:    1/5     Loss: 3.4504010507038663
+
+Epoch:    1/5     Loss: 3.476764418057033
+
+Epoch:    1/5     Loss: 3.4993996517998833
+
+Epoch:    1/5     Loss: 3.4916227429253714
+
+Epoch:    1/5     Loss: 3.515883917808533
+
+Epoch:    1/5     Loss: 3.5015342617034912
+
+Epoch:    1/5     Loss: 3.515397629737854
+
+Epoch:    1/5     Loss: 3.535081344332014
+
+Epoch:    2/5     Loss: 3.4792518190473145
+
+Epoch:    2/5     Loss: 3.4516049010413035
+
+Epoch:    2/5     Loss: 3.4439382253374373
+
+Epoch:    2/5     Loss: 3.4602854905809677
+
+Epoch:    2/5     Loss: 3.4615887335368565
+
+Epoch:    2/5     Loss: 3.4752602311543055
+
+Epoch:    2/5     Loss: 3.500058217729841
+
+Epoch:    2/5     Loss: 3.489127404349191
+
+Epoch:    2/5     Loss: 3.52058160168784
+
+Epoch:    3/5     Loss: 3.4590407334573086
+
+Epoch:    3/5     Loss: 3.4426666511808124
+
+Epoch:    3/5     Loss: 3.440643325533186
+
+Epoch:    3/5     Loss: 3.4450723273413524
+
+Epoch:    3/5     Loss: 3.4543428250721524
+
+Epoch:    3/5     Loss: 3.470689544677734
+
+Epoch:    3/5     Loss: 3.4723389952523367
+
+Epoch:    3/5     Loss: 3.4776052815573557
+
+Epoch:    3/5     Loss: 3.483177886009216
+
+Epoch:    4/5     Loss: 3.4340968051849052
+
+Epoch:    4/5     Loss: 3.4151257256099155
+
+Epoch:    4/5     Loss: 3.4120938750675744
+
+Epoch:    4/5     Loss: 3.4331338793890818
+
+Epoch:    4/5     Loss: 3.4453425891058784
+
+Epoch:    4/5     Loss: 3.4443468931743078
+
+Epoch:    4/5     Loss: 3.452010008266994
+
+Epoch:    4/5     Loss: 3.4746286269596647
+
+Epoch:    4/5     Loss: 3.4752140848977224
+
+Epoch:    5/5     Loss: 3.426657414227201
+
+Epoch:    5/5     Loss: 3.3884126731327604
+
+Epoch:    5/5     Loss: 3.4065683439799717
+
+Epoch:    5/5     Loss: 3.415581912313189
+
+Epoch:    5/5     Loss: 3.42056182043893
+
+Epoch:    5/5     Loss: 3.43841723714556
+
+Epoch:    5/5     Loss: 3.4458114685331074
+
+Epoch:    5/5     Loss: 3.446637315750122
+
+Epoch:    5/5     Loss: 3.455680937767029
+
+Model Trained and Saved
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/lib/python3.6/site-packages/torch/serialization.py:193: UserWarning: Couldn&#39;t retrieve source code for container of type RNN. It won&#39;t be checked for correctness upon loading.
+  &#34;type &#34; + obj.__name__ + &#34;. It won&#39;t be checked &#34;
 </pre>
 </div>
 </div>
@@ -14375,7 +14573,7 @@ As the decrease of the loss was little I gave it more time to evolve (10 epochs)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14504,7 +14702,7 @@ As the decrease of the loss was little I gave it more time to evolve (10 epochs)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extend vocab-int mapping by pad-word:</span>
@@ -14520,11 +14718,11 @@ As the decrease of the loss was little I gave it more time to evolve (10 epochs)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># run the cell multiple times to get different results!</span>
-<span class="n">gen_length</span> <span class="o">=</span> <span class="mi">140</span> <span class="c1"># modify the length to your preference</span>
+<span class="n">gen_length</span> <span class="o">=</span> <span class="mi">450</span> <span class="c1"># modify the length to your preference</span>
 <span class="n">prime_word</span> <span class="o">=</span> <span class="s1">&#39;elaine&#39;</span> <span class="c1"># name for starting the script</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -14548,26 +14746,88 @@ As the decrease of the loss was little I gave it more time to evolve (10 epochs)
     <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/lib/python3.6/site-packages/ipykernel_launcher.py:41: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters().
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>elaine: and boom. ]
+<pre>elaine: it, i gotta get a call.
+
+jerry: i think i was in a long time, i got a lot of money.
+
+jerry:(looking around) oh!
 
 jerry: what?
 
-george: oh...
+jerry: no, no, no, no. no. no....
 
-george: i don&#39;t understand, i don&#39;t like this, but you know what i mean, i don&#39;t have to get it in my car.
+kramer:(to jerry) hey.
 
-kramer: i don&#39;t want to get the car in a little thing.
+jerry: hey, i think you should be a very interesting lesbian. you know, you know i was just trying to be a little bit.
 
-jerry:(interrupting) oh!
+george: what about the yankees?
 
-elaine:(to elaine) what about this guy?
+george: yeah, i know.
 
-elaine: well, it&#39;s like that i don&#39;t think so.
+george: i didn&#39;t have to do that, and i don&#39;t know.
 
-elaine: i know, i don&#39;t know if you can go to the movies, but i think i would have seen it, i don&#39;t want to see him.
+jerry: what do you mean?
 
-jerry: i can&#39;t do it. i don&#39;t have the money to
+elaine: well, i don&#39;t know.
+
+kramer: yeah. you know i was in the bathroom with her, but i don&#39;t have any money.
+
+jerry:(to the phone) yeah, you know, the guy has a little problem.
+
+elaine:(looking at jerry and george) oh yeah, you know... i was in the neighborhood and he said he doesn&#39;t even think i can do it.
+
+jerry: oh, you know, i don&#39;t have to do that.
+
+jerry:(to jerry) i think we should be the same thing.
+
+jerry: i can&#39;t believe this.
+
+kramer: i think it&#39;s gonna be a problem with the manager.
+
+jerry: what do you think?
+
+kramer: no.
+
+jerry:(to jerry) you can&#39;t believe that!
+
+jerry: what is the difference?
+
+kramer: oh, well...
+
+elaine: hey.
+
+kramer: hey, you know, it&#39;s a big deal.
+
+jerry: i didn&#39;t know.
+
+george: i can&#39;t believe it. i can&#39;t get this thing out..
+
+kramer: oh, i don&#39;t think so.
+
+kramer: i can&#39;t believe i was in the mood with that..
+
+george: what about this?
+
+kramer: yeah, i think it&#39;s a problem...
+
+elaine: yeah...
+
+jerry:(quietly) well, i don&#39;t know...
+
+jerry: i don&#39;t know. i can&#39;t believe you don&#39;t have a job.(elaine enters with his hand).
+
 </pre>
 </div>
 </div>
@@ -14586,7 +14846,7 @@ jerry: i can&#39;t do it. i don&#39;t have the money to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># save script to a text file</span>
